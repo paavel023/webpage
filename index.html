@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pavel Todica | Developer & CEO | FiveM & Web Development Expert</title>
+  <meta name="description" content="Professional portfolio of Pavel Todica (paaveldev) - Developer and CEO with extensive experience in FiveM roleplay communities, game development, and security solutions." />
+  <meta name="keywords" content="Pavel Todica, paaveldev, FiveM Developer, Game Development, Project Manager, Security Consultant, eSports Director, Kyxel Studios" />
+  <meta name="author" content="Pavel Todica" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://paveltodica.dev/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://paveltodica.dev/" />
+  <meta property="og:title" content="Pavel Todica - Developer & CEO" />
+  <meta property="og:description" content="Professional portfolio showcasing FiveM development, game development, and leadership experience." />
+  <meta property="og:image" content="https://paveltodica.dev/img/4.jpg" />
+  <meta property="og:site_name" content="paaveldev Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="paaveldev – Pavel Todica - Developer & CEO" />
+  <meta name="twitter:description" content="Professional portfolio showcasing FiveM development, game development, and leadership experience." />
+  <meta name="twitter:image" content="https://paveltodica.dev/img/4.jpg" />
+  <meta name="twitter:creator" content="@paaveldev" />
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pavel Todica",
+    "alternateName": "paaveldev",
+    "jobTitle": "Developer & CEO",
+    "worksFor": { "@type": "Organization", "name": "Kyxel Studios" },
+    "description": "Developer and CEO with extensive experience in FiveM roleplay communities, game development, and security solutions.",
+    "url": "https://paveltodica.dev/",
+    "sameAs": [
+      "https://linkedin.com/in/pavel-todica",
+      "https://github.com/paavel023"
+    ],
+    "image": "https://paveltodica.dev/img/4.jpg"
+  }
+  </script>
+
+  <!-- Branding / PWA (optional) -->
+  <meta name="theme-color" content="#0f172a" />
+  <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/1283120706158334044/1402042623769972887/LOGO_PAVEL_.png?ex=68927972&is=689127f2&hm=0fdef5b17af58b270f26deff869cfb1b0378f05f1b03a6fab58069a3f637c6c9&" />
+
+  <!-- Performance: preconnect + preload + single import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="//unpkg.com" />
+  <link rel="dns-prefetch" href="//cdn.discordapp.com" />
+
+  <!-- NOTE: Security headers (CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy, X-Content-Type-Options) must be set as HTTP response headers on the host, not via <meta>. -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" aria-label="Go to homepage">Pavel Todica</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About Me</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#blog" class="nav-link" data-section="blog">Blog</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="particles-container" id="particles"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-image" data-aos="fade-up" data-aos-delay="200">
+                    <img src="img/4.jpg" alt="Pavel Todica - Professional Photo" class="profile-photo">
+                </div>
+                <div class="hero-text">
+                    <div class="hero-name-container" data-aos="fade-up">
+                    <h1 class="hero-name">Pavel Todica</h1>
+                    <div class="hero-subtitle-container">
+                        <span class="hero-subtitle-text">I'm a</span>
+                        <div class="typing-container">
+                            <span class="typing-text" id="typing-text"></span>
+                            <span class="typing-cursor">|</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                    Ex Lead Developer at Melilla Titans • CEO of Kyxel Studios<br>
+                    FiveM Roleplay Developer • eSports Manager
+                </p>
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+                </div>
+            </div>
+            <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="800">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right" data-aos-delay="200">
+                    <img src="img/2.png" alt="First Image Description" class="about-photo">
+                    <img src="img/4.jpg" alt="Second Image Description" class="about-photo">
+                </div>
+                        <div class="about-text" data-aos="fade-left" data-aos-delay="400">
+                        <p class="about-description">
+                            I'm Pavel Todica, a passionate developer and project manager with extensive experience in the gaming industry, 
+                            particularly in the FiveM roleplay community. My journey began as a Lead Developer at Melilla Titans, 
+                            where I honed my skills in game development and community management.
+                        </p>
+                        <p class="about-description">
+                            I'm currently pursuing a degree in Electronics, Telecommunications and Information Technology (ETTI) at the "Gheorghe Asachi" Technical University of Iași, 
+                            with a strong focus on embedded systems and cybersecurity. I'm deeply passionate about modern security technologies, ethical hacking, and the challenges of protecting digital environments.
+                        </p>
+                        <p class="about-description">
+                            Today, I serve as the CEO of Kyxel Studios, the innovative company behind Kyxel Security and Coimoi eSports. 
+                            Our mission is to create cutting-edge security solutions and deliver exceptional gaming experiences to players worldwide.
+                        </p>
+                    <div class="skills">
+                        <h3>Skills & Expertise</h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Website Development</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>FiveM Development</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Project Management</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="75"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Community Management</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Security Solutions</span>
+                                    <span>55%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="55"></div>
+                                </div>
+                            </div>
+                             <div class="skill-bar">
+                                <div class="skill-info">
+                                    <span>Game Development</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-percentage="45"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats" data-aos="fade-up" data-aos-delay="600">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">Community Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-logo">
+                                <img src="https://cdn.discordapp.com/attachments/1283120706158334044/1402027056153366528/kyxelstudios_2.png?ex=68926af2&is=68911972&hm=746a5fe07d8762bfe90bdb2adfe8add6468d4c4804a211163d5b3401ac2caa0f&" alt="Kyxel Studios Logo">
+                            </div>
+                            <div class="timeline-info">
+                                <h3 style="text-align: left;">CEO & Founder</h3>
+                                <span class="company">Kyxel Studios</span>
+                                <span class="period">Present</span>
+                            </div>
+                        </div>
+                        <p>Leading the development of innovative security solutions and gaming experiences. 
+                        Overseeing Kyxel Security and Coimoi eSports projects.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Kyxel Security</span>
+                            <span class="project-tag">Coimoi eSports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-logo">
+                                <img src="https://cdn.discordapp.com/attachments/1283120706158334044/1402027378791944232/61f3da4a05247.png?ex=68926b3f&is=689119bf&hm=7c44fe7af6b1fd55c76f9cf7d2481f1514a4049dbd077f8710481dddad98fc78&" alt="Melilla Titans Logo">
+                            </div>
+                            <div class="timeline-info">
+                                <h3>Lead Developer</h3>
+                                <span class="company">Melilla Titans</span>
+                                <span class="period">2024-2025</span>
+                            </div>
+                        </div>
+                        <p>Led development team in creating immersive gaming experiences and managing technical infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-logo">
+                                <img src="https://cdn.discordapp.com/attachments/866415003178106910/1249330151313903657/S5GEX4X_copia.png?ex=6891f05f&is=68909edf&hm=7dfb9937a99681c041eb024716f03b7c7f89b5e69012df131be7e30048e1c173&" alt="HushRP Logo">
+                            </div>
+                            <div class="timeline-info">
+                                <h3>FiveM Developer</h3>
+                                <div style="text-align: left;">
+                                    <span class="company">HushRP</span>
+                                    <span class="period">2024-2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Developed custom scripts and systems for the HushRP roleplay server, enhancing player experience.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-logo">
+                                <img src="https://media.discordapp.net/attachments/871361502920179733/1140607376702054460/V1_BLANCO.png?ex=6891ea66&is=689098e6&hm=a8ba57b431519633c476568931bfb0935befab5ae2172f3e974908326d7c7705&=&format=webp&quality=lossless&width=928&height=928" alt="Spain Roleplay Logo">
+                            </div>
+                            <div class="timeline-info">
+                                <h3>FiveM Developer</h3>
+                                <span class="company">Spain Roleplay</span>
+                                <span class="period">2022-2023</span>
+                            </div>
+                        </div>
+                        <p>Contributed to the development of Spain Roleplay server, implementing custom features and optimizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                        <h2>Latest Articles</h2>
+        <p>Insights, tutorials, and thoughts on development, security, and technology</p>
+            </div>
+            
+            <div class="blog-grid" data-aos="fade-up" data-aos-delay="200">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop" alt="FiveM Development">
+                        <div class="blog-category">FiveM</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Aug 5, 2025</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <h3>Advanced FiveM Server Optimization</h3>
+                        <p>Learn the best practices for optimizing your FiveM server performance, reducing lag, and improving player experience.</p>
+                        <div class="blog-tags">
+                            <span class="tag">FiveM</span>
+                            <span class="tag">Optimization</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                        <a href="#" class="blog-link"><span>Read More</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop" alt="Security Best Practices">
+                        <div class="blog-category">Security</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Aug 5, 2025</span>
+                            <span class="blog-read-time">8 min read</span>
+                        </div>
+                        <h3>Cybersecurity for Game Servers</h3>
+                        <p>Essential security measures to protect your game servers from DDoS attacks, exploits, and unauthorized access.</p>
+                        <div class="blog-tags">
+                            <span class="tag">Security</span>
+                            <span class="tag">DDoS Protection</span>
+                            <span class="tag">Game Servers</span>
+                        </div>
+                        <a href="#" class="blog-link"><span>Read More</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://cdn.discordapp.com/attachments/1283120706158334044/1402298082141671514/3.jpg?ex=6893675c&is=689215dc&hm=0aad54e308e6fd1befbb8a1f2ca205973c9610e602ec93ad3166217711fcba28&" alt="Project Management">
+                        <div class="blog-category">Leadership</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Aug 5, 2025</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <h3>Leading Remote Development Teams</h3>
+                        <p>Strategies for effectively managing and leading remote development teams in the gaming industry.</p>
+                        <div class="blog-tags">
+                            <span class="tag">Leadership</span>
+                            <span class="tag">Remote Teams</span>
+                            <span class="tag">Management</span>
+                        </div>
+                        <a href="#" class="blog-link"><span>Read More</span> <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="section-footer" data-aos="fade-up">
+                <a href="#blog" class="btn btn-primary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+
+
+        <!-- Enhanced Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>Featured Projects</h2>
+                    <p>Explore my latest work and achievements</p>
+                </div>
+
+                <div class="projects-filter" data-aos="fade-up" data-aos-delay="100">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="fivem">FiveM</button>
+                    <button class="filter-btn" data-filter="security">Security</button>
+                    <button class="filter-btn" data-filter="esports">eSports</button>
+                    <button class="filter-btn" data-filter="management">Management</button>
+                </div>
+
+                <div class="projects-grid" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card" data-category="security">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=300&fit=crop" alt="Kyxel Security">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="projects/kyxel-security.html" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <button class="project-preview" data-project="kyxel">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">Security Solutions</div>
+                            <h3>Kyxel Security</h3>
+                            <p>Comprehensive cybersecurity platform providing DDoS protection, threat detection, and server security for gaming communities.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <span class="stat-number">99.9%</span>
+                                    <span class="stat-label">Uptime</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">10+</span>
+                                    <span class="stat-label">Protected Servers</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">24/7</span>
+                                    <span class="stat-label">Monitoring</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Anti DDoS</span>
+                                <span class="tech-tag">Monitoring</span>
+                                <span class="tech-tag">In Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="esports">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=300&fit=crop" alt="Coimoi eSports">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="projects/coimoi-esports.html" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <button class="project-preview" data-project="coimoi">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">eSports Management</div>
+                            <h3>Coimoi eSports</h3>
+                            <p>Emerging eSports team in development, building competitive roster and planning future tournament participation.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <span class="stat-number">5</span>
+                                    <span class="stat-label">Players</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">Planned</span>
+                                    <span class="stat-label">Tournaments</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">In Dev</span>
+                                    <span class="stat-label">Status</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Planning</span>
+                                <span class="tech-tag">Design</span>
+                                <span class="tech-tag">In Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="fivem">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop" alt="FiveM Development">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="projects/spain-roleplay.html" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <button class="project-preview" data-project="fivem">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">Game Development</div>
+                            <h3>Spain Roleplay</h3>
+                            <p>Custom roleplay server with unique jobs, immersive economy, advanced gameplay systems, and rich storytelling elements for deeper immersion.</p>
+                            <div class="project-stats">
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Daily Players</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">20+</span>
+                                    <span class="stat-label">Custom Scripts</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">90%</span>
+                                    <span class="stat-label">Satisfaction</span>
+                                </div>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Lua</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">ESX</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>pavel@paveltodica.dev</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Romania, Iasi</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" aria-label="LinkedIn Profile">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="GitHub Profile">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Twitter Profile">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" aria-label="Discord Server">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="400">
+                    <form id="contact-form" action="https://formspree.io/f/xblkzdkk" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required aria-describedby="name-error" placeholder="Your name">
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required aria-describedby="email-error" placeholder="Your email">
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required aria-describedby="subject-error" placeholder="Subject">
+                            <div class="error-message" id="subject-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required aria-describedby="message-error" placeholder="Your message"></textarea>
+                            <div class="error-message" id="message-error"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pavel Todica</h3>
+                    <p>Developer & CEO passionate about creating innovative solutions in the gaming industry.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:pavel.todica@example.com">contact@kachitodev.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pavel Todica (paaveldev). <span>All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="analytics.js"></script>
+    <script src="security-config.js"></script>
+    <script src="performance.js"></script>
+</body>
+</html> 

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HushRP Server - Pavel Todica | FiveM Roleplay Development</title>
+    <meta name="description" content="HushRP Server - Custom FiveM roleplay server with advanced features and systems. Professional roleplay experience with custom scripts and optimizations.">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" aria-label="Go to homepage">paaveldev</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#about" class="nav-link">About Me</a>
+                <a href="../index.html#experience" class="nav-link">Experience</a>
+                <a href="../index.html#projects" class="nav-link">Projects</a>
+                <a href="../index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-hero-content">
+                <div class="project-hero-image" data-aos="fade-right">
+                    <img src="https://media.discordapp.net/attachments/866415003178106910/1259211312899166349/image.png?ex=68924a6c&is=6890f8ec&hm=9f5f84a2b7a2c3eb833fdc0178a4a412683a5fbf470557af9ce7e2d3bff9bd01&=&format=webp&quality=lossless&width=1032&height=580" alt="HushRP Server">
+                </div>
+                <div class="project-hero-text" data-aos="fade-left">
+                    <h1>HushRP Server</h1>
+                    <p class="project-subtitle">Custom FiveM Roleplay Server with Advanced Features</p>
+                    <div class="project-status">
+                        <span class="status-badge completed">Completed</span>
+                    </div>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">FiveM</span>
+                        <span class="tech-tag">Lua</span>
+                        <span class="tech-tag">Roleplay</span>
+                        <span class="tech-tag">Custom Scripts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="project-overview">
+        <div class="container">
+            <div class="overview-grid">
+                <div class="overview-content" data-aos="fade-up">
+                    <h2>Project Overview</h2>
+                    <p>HushRP was a comprehensive FiveM roleplay server that provided an immersive gaming experience with custom scripts, advanced systems, and optimized performance. The server featured unique roleplay mechanics, custom jobs, economy systems, and community management tools.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-briefcase"></i> Custom job systems and economy</li>
+                        <li><i class="fas fa-car"></i> Vehicle customization and management</li>
+                        <li><i class="fas fa-home"></i> Property and housing systems</li>
+                        <li><i class="fas fa-users"></i> Advanced player management</li>
+                        <li><i class="fas fa-shield-alt"></i> Anti-cheat and security measures</li>
+                        <li><i class="fas fa-chart-line"></i> Performance optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="overview-stats" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Development Status</h4>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Duration</h4>
+                            <p>3 months</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Peak Players</h4>
+                            <p>50+ concurrent</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>Player Rating</h4>
+                            <p>4.8/5.0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Process -->
+    <section class="development-process">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Development Process</h2>
+            <div class="process-timeline">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Server Setup & Configuration</h3>
+                        <p>Initial server setup with FiveM framework, database configuration, and basic infrastructure. Implemented core server management systems.</p>
+                        <div class="step-duration">Duration: 2 weeks</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Core Systems Development</h3>
+                        <p>Developed essential roleplay systems including job management, economy, vehicle systems, and player progression mechanics.</p>
+                        <div class="step-duration">Duration: 2 months</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Custom Features & Scripts</h3>
+                        <p>Created unique custom scripts for enhanced roleplay experience, including custom jobs, activities, and community features.</p>
+                        <div class="step-duration">Duration: 2.5 months</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Testing & Optimization</h3>
+                        <p>Comprehensive testing with community feedback, performance optimization, and final deployment with monitoring systems.</p>
+                        <div class="step-duration">Duration: 1.5 months</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="technical-details">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Technical Architecture</h2>
+            <div class="tech-grid">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fas fa-server"></i> Server Infrastructure</h3>
+                    <ul>
+                        <li>FiveM server framework</li>
+                        <li>MySQL database integration</li>
+                        <li>Redis caching system</li>
+                        <li>Load balancing configuration</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-code"></i> Custom Scripts</h3>
+                    <ul>
+                        <li>Lua-based resource development</li>
+                        <li>ESX framework integration</li>
+                        <li>Custom job systems</li>
+                        <li>Advanced economy management</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3><i class="fas fa-shield-alt"></i> Security & Anti-Cheat</h3>
+                    <ul>
+                        <li>Custom anti-cheat systems</li>
+                        <li>Player validation</li>
+                        <li>Exploit prevention</li>
+                        <li>Server protection measures</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="400">
+                    <h3><i class="fas fa-tachometer-alt"></i> Performance Optimization</h3>
+                    <ul>
+                        <li>Resource optimization</li>
+                        <li>Database query optimization</li>
+                        <li>Memory management</li>
+                        <li>Network efficiency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Features -->
+    <section class="custom-features">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Custom Features & Systems</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Advanced Job System</h3>
+                    <p>Custom job creation with unique mechanics, progression systems, and specialized roles for enhanced roleplay experience.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Vehicle Management</h3>
+                    <p>Comprehensive vehicle system with customization, ownership, insurance, and maintenance mechanics.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property System</h3>
+                    <p>Advanced housing system with property ownership, interior customization, and real estate mechanics.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Economy Management</h3>
+                    <p>Balanced economy with multiple income sources, inflation control, and dynamic pricing systems.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Tools</h3>
+                    <p>Player management tools, community events, and social features to enhance player engagement.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Comprehensive server analytics with player statistics, performance metrics, and community insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges & Solutions -->
+    <section class="challenges-solutions">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Challenges & Solutions</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="challenge-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Challenge</h3>
+                    </div>
+                    <p>Managing server performance with 150+ concurrent players while maintaining smooth gameplay and preventing lag.</p>
+                </div>
+                
+                <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="solution-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Solution</h3>
+                    </div>
+                    <p>Implemented resource optimization, efficient database queries, and load balancing to maintain consistent performance under high load.</p>
+                </div>
+                
+                <div class="challenge-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="challenge-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Challenge</h3>
+                    </div>
+                    <p>Preventing exploits and maintaining server security while allowing legitimate roleplay activities.</p>
+                </div>
+                
+                <div class="solution-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="solution-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Solution</h3>
+                    </div>
+                    <p>Developed custom anti-cheat systems with player validation, exploit detection, and automated security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results & Impact -->
+    <section class="results-impact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Results & Impact</h2>
+            <div class="results-grid">
+                <div class="result-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="result-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Growth</h3>
+                    <p>Successfully built and maintained an active community of 150+ concurrent players with high engagement rates.</p>
+                </div>
+                
+                <div class="result-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="result-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Player Satisfaction</h3>
+                    <p>Achieved 4.8/5.0 player rating with positive feedback on custom features and roleplay experience.</p>
+                </div>
+                
+                <div class="result-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="result-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performance Excellence</h3>
+                    <p>Maintained stable server performance with 99.9% uptime and minimal lag even under maximum load.</p>
+                </div>
+                
+                <div class="result-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="result-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Achievement</h3>
+                    <p>Developed 15+ custom scripts and systems that enhanced the overall roleplay experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Projects -->
+    <section class="back-to-projects">
+        <div class="container">
+            <div class="back-content" data-aos="fade-up">
+                <h2>Explore Other Projects</h2>
+                <p>Discover more of my work and experience in game development and security solutions.</p>
+                <div class="project-links">
+                    <a href="kyxel-security.html" class="btn btn-primary">Kyxel Security</a>
+                    <a href="coimoi-esports.html" class="btn btn-secondary">Coimoi eSports</a>
+                    <a href="spain-roleplay.html" class="btn btn-secondary">Spain Roleplay</a>
+                    <a href="../index.html#projects" class="btn btn-outline">View All Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>paaveldev - Pavel Todica</h3>
+                    <p>Developer & CEO passionate about creating innovative solutions in the gaming industry.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#experience">Experience</a></li>
+                        <li><a href="../index.html#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:contact@kachitodev.com">contact@kachitodev.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pavel Todica (paaveldev). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../script-projects.js"></script>
+</body>
+</html> 
