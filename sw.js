@@ -1,4 +1,4 @@
-const CACHE_NAME = 'paaveldev-portfolio-v1.0';
+const CACHE_NAME = 'paaveldev-portfolio-v1.1';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -22,12 +22,35 @@ self.addEventListener('install', event => {
     );
 });
 
+// Immediately activate the new service worker on install
+self.addEventListener('install', event => {
+    self.skipWaiting();
+});
+
 // Fetch event
 self.addEventListener('fetch', event => {
+    // Use a network-first strategy for navigation requests (documents/pages)
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request)
+                .then(networkResponse => {
+                    // Update cache with the latest page for offline fallback
+                    const copy = networkResponse.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+                    return networkResponse;
+                })
+                .catch(() => {
+                    // If network fails, try to serve from cache
+                    return caches.match(event.request).then(cached => cached || caches.match('/index.html'));
+                })
+        );
+        return;
+    }
+
+    // For other requests (assets), continue with cache-first to improve offline performance
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Return cached version or fetch from network
                 return response || fetch(event.request);
             })
     );
@@ -47,6 +70,11 @@ self.addEventListener('activate', event => {
             );
         })
     );
+});
+
+// Take control of uncontrolled clients as soon as the SW becomes active
+self.addEventListener('activate', event => {
+    event.waitUntil(self.clients.claim());
 });
 
 // Background sync for offline form submissions
