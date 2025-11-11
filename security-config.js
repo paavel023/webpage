@@ -105,11 +105,12 @@ class SecurityConfig {
             }
         };
 
-        // Apply validation to all form inputs
+        // Apply validation to all form inputs on blur (sanitize after user finishes typing)
         document.addEventListener('DOMContentLoaded', () => {
             const inputs = document.querySelectorAll('input, textarea');
             inputs.forEach(input => {
-                input.addEventListener('input', (e) => {
+                // Use blur instead of input so we don't modify the value while the user is typing
+                input.addEventListener('blur', (e) => {
                     const sanitized = this.sanitizeInput(e.target.value);
                     if (sanitized !== e.target.value) {
                         e.target.value = sanitized;

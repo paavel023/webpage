@@ -4,6 +4,11 @@ class Analytics {
         this.events = [];
         this.sessionId = this.generateSessionId();
         this.startTime = Date.now();
+        // Read optional endpoint from window config (set window.ANALYTICS_ENDPOINT = 'https://your.endpoint')
+        this.analyticsEndpoint = (window.ANALYTICS_ENDPOINT || (window.ANALYTICS_CONFIG && window.ANALYTICS_CONFIG.endpoint)) || null;
+        this._lastEndpointError = 0; // timestamp to rate-limit console warnings
+        // Verbose logging flag (set window.ANALYTICS_VERBOSE = true to see logs)
+        this.verbose = !!(window.ANALYTICS_VERBOSE || (window.ANALYTICS_CONFIG && window.ANALYTICS_CONFIG.verbose));
         this.init();
     }
 
@@ -34,9 +39,9 @@ class Analytics {
 
         this.events.push(event);
         this.sendToAnalytics(event);
-        
-        // Log to console in development
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+
+        // Log to console in development only if verbose is enabled
+        if (this.verbose) {
             console.log('Analytics Event:', event);
         }
     }
@@ -198,28 +203,46 @@ class Analytics {
             window.gtag('event', event.event, event.properties);
         }
 
-        // Send to custom endpoint
-        this.sendToCustomEndpoint(event);
+        // Send to custom endpoint (only if configured)
+        if (this.analyticsEndpoint) {
+            this.sendToCustomEndpoint(event);
+        } else {
+            // In development, warn once if no endpoint configured and hostname is localhost
+            if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && !this._warnedNoEndpoint) {
+                console.warn('Analytics endpoint not configured. Set window.ANALYTICS_ENDPOINT to enable sending events.');
+                this._warnedNoEndpoint = true;
+            }
+        }
     }
 
     async sendToCustomEndpoint(event) {
+        // Ensure endpoint is set
+        const endpoint = this.analyticsEndpoint;
+        if (!endpoint) return;
+
         try {
-            // Example: Send to your own analytics endpoint
-            const response = await fetch('/api/analytics', {
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(event)
             });
-            
+
             if (!response.ok) {
-                console.warn('Analytics endpoint not available');
+                const now = Date.now();
+                // Rate-limit console warnings to once every 10s to avoid spam
+                if (now - this._lastEndpointError > 10000) {
+                    console.warn(`Analytics endpoint returned status ${response.status} ${response.statusText}`);
+                    this._lastEndpointError = now;
+                }
             }
         } catch (error) {
-            // Silently fail in production, log in development
-            if (window.location.hostname === 'localhost') {
-                console.log('Analytics endpoint error:', error);
+            // Only log network errors in development, rate-limited
+            const now = Date.now();
+            if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (now - this._lastEndpointError > 10000)) {
+                console.error('Analytics endpoint error:', error);
+                this._lastEndpointError = now;
             }
         }
     }

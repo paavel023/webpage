@@ -7,6 +7,8 @@ class PerformanceMonitor {
     }
 
     init() {
+        // Verbose logging flag for development
+        this.verbose = !!(window.ANALYTICS_VERBOSE || (window.ANALYTICS_CONFIG && window.ANALYTICS_CONFIG.verbose));
         this.setupPerformanceObserver();
         this.setupResourceTiming();
         this.setupMemoryMonitoring();
@@ -192,8 +194,8 @@ class PerformanceMonitor {
         
         localStorage.setItem('performance_metrics', JSON.stringify(metrics));
 
-        // Log in development
-        if (window.location.hostname === 'localhost') {
+        // Log in development only if verbose flag is enabled
+        if (this.verbose) {
             console.log('Performance Metric:', metric);
         }
 

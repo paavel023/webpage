@@ -6,6 +6,8 @@ class PortfolioApp {
         this.chatMessages = [];
         this.isTyping = false;
         this.init();
+        // Expose instance for debugging in devtools: window.portfolioApp
+        try { window.portfolioApp = this; } catch (e) { /* ignore */ }
     }
 
                         init() {
@@ -397,32 +399,46 @@ class PortfolioApp {
 
         // Auto responses
         this.chatResponses = {
+            // English
             'hello': 'Hi! How can I help you today?',
             'help': 'I can help you with project inquiries, collaboration opportunities, or technical questions.',
             'contact': 'You can reach me at contact@kachitodev.com or through the contact form.',
-            'project': 'I have experience in FiveM development, game development, and security solutions. What specific area interests you?'
+            'project': 'I have experience in FiveM development, game development, and security solutions. What specific area interests you?',
+            // Spanish variants
+            'hola': '¡Hola! ¿En qué puedo ayudarte?',
+            'buenas': '¡Hola! ¿Cómo puedo ayudarte hoy?',
+            'ayuda': 'Puedo ayudarte con consultas sobre proyectos, colaboraciones o preguntas técnicas.',
+            'contacto': 'Puedes contactarme en contact@kachitodev.com o mediante el formulario de contacto.',
+            'proyecto': 'Tengo experiencia en FiveM, desarrollo de juegos y soluciones de seguridad. ¿Qué área te interesa?'
         };
     }
 
     sendChatMessage(message) {
-        if (!message.trim()) return;
+        // Make this async-friendly so we can call remote AI backends if configured
+        (async () => {
+            if (!message || !message.trim()) return;
 
-        const chatMessages = document.querySelector('.chat-messages');
-        const input = document.querySelector('.chat-input input');
-        
-        // Add user message
-        this.addChatMessage(message, 'user');
-        input.value = '';
+            const input = document.querySelector('.chat-input input');
 
-        // Simulate typing
-        this.showTypingIndicator();
+            // Add user message
+            this.addChatMessage(message, 'user');
+            if (input) input.value = '';
 
-        // Auto response after delay
-        setTimeout(() => {
-            this.hideTypingIndicator();
-            const response = this.getAutoResponse(message.toLowerCase());
-            this.addChatMessage(response, 'bot');
-        }, 1000 + Math.random() * 2000);
+            // Show typing indicator while generating
+            this.showTypingIndicator();
+
+            try {
+                const response = await this.getAutoResponse(message);
+                // small randomized delay to emulate natural typing
+                await new Promise(r => setTimeout(r, 400 + Math.random() * 1200));
+                this.hideTypingIndicator();
+                this.addChatMessage(response, 'bot');
+            } catch (err) {
+                this.hideTypingIndicator();
+                console.error('AI response error:', err);
+                this.addChatMessage("Lo siento, no puedo generar una respuesta ahora mismo.", 'bot');
+            }
+        })();
     }
 
     addChatMessage(message, sender) {
@@ -432,6 +448,14 @@ class PortfolioApp {
         messageEl.textContent = message;
         chatMessages.appendChild(messageEl);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        // Persist in-memory chat history for context (limit size)
+        try {
+            if (!this.chatMessages) this.chatMessages = [];
+            this.chatMessages.push({ sender, message, timestamp: Date.now() });
+            if (this.chatMessages.length > 200) this.chatMessages.splice(0, this.chatMessages.length - 200);
+        } catch (e) {
+            console.warn('Failed to push chat message to history', e);
+        }
     }
 
     showTypingIndicator() {
@@ -450,13 +474,88 @@ class PortfolioApp {
         }
     }
 
-    getAutoResponse(message) {
+    // Async auto-response generator. If window.AI_CONFIG.endpoint is set, it will try to POST to that
+    // endpoint with { message, history } and expect { reply } in JSON. Otherwise it falls back to
+    // a lightweight local natural-ish generator.
+    async getAutoResponse(message) {
+        const text = (message || '').toString();
+
+        // If a remote AI endpoint is configured, call it (user must provide a safe backend).
+        try {
+            const cfg = window.AI_CONFIG || JSON.parse(localStorage.getItem('AI_CONFIG') || 'null');
+            if (cfg && cfg.endpoint) {
+                const payload = {
+                    message: text,
+                    history: this.chatMessages.slice(-12) // send recent context
+                };
+
+                const headers = { 'Content-Type': 'application/json' };
+                if (cfg.key) headers['Authorization'] = `Bearer ${cfg.key}`;
+
+                const resp = await fetch(cfg.endpoint, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(payload)
+                });
+
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.reply) return data.reply;
+                } else {
+                    console.warn('AI endpoint returned', resp.status);
+                }
+            }
+        } catch (e) {
+            console.warn('Remote AI call failed, falling back to local generator', e);
+        }
+
+        // Local, template-based response generator for natural-feeling replies
+        return this.localGenerateResponse(text);
+    }
+
+    localGenerateResponse(message) {
+        const normalized = (message || '').toLowerCase();
+
+        // Try keyword-based quick matches first
         for (const [key, response] of Object.entries(this.chatResponses)) {
-            if (message.includes(key)) {
-                return response;
+            if (normalized.includes(key)) {
+                // vary phrasing
+                const variants = [response, `Sure — ${response}`, `${response} 😊`];
+                return variants[Math.floor(Math.random() * variants.length)];
             }
         }
-        return "Thanks for your message! I'll get back to you soon. You can also reach me at contact@kachitodev.com";
+
+        // If message is a question (contains '?'), answer courteously
+    const questionWords = ['how', 'what', 'why', 'when', 'where', 'can', 'do', 'does'];
+    const questionWordsEs = ['cómo', 'como', 'qué', 'que', 'por qué', 'por que', 'cuando', 'dónde', 'donde', 'puedes', 'puedo', 'cómo estás', 'cómo estas'];
+    const startsWithQuestion = questionWords.some(w => normalized.startsWith(w + ' ')) || questionWordsEs.some(w => normalized.startsWith(w + ' '));
+    const isQuestion = message.trim().endsWith('?') || startsWithQuestion || questionWordsEs.some(w => normalized.includes(w));
+        if (isQuestion) {
+            const qResponses = [
+                "Buena pregunta — puedo investigar eso y volver con una respuesta más precisa.",
+                "Interesante — ¿puedes darme un poco más de contexto?",
+                "Puedo ayudar con eso. ¿Quieres que te explique en detalle o con un resumen?"
+            ];
+            return qResponses[Math.floor(Math.random() * qResponses.length)];
+        }
+
+        // For short messages, be concise
+        if (message.trim().length < 20) {
+            const shortReplies = [
+                "¡Perfecto! Cuéntame más.",
+                "Entendido.",
+                "Genial — ¿qué necesitas exactamente?"
+            ];
+            return shortReplies[Math.floor(Math.random() * shortReplies.length)];
+        }
+
+        // Default friendly fallback
+        const fallbacks = [
+            "Gracias por el mensaje — lo revisaré y te respondo pronto.",
+            "¡Gracias! Si quieres, dame más detalles para poder ayudar mejor.",
+            "Interesante. Puedo ayudar con eso: ¿te gustaría una guía paso a paso o un resumen rápido?"
+        ];
+        return fallbacks[Math.floor(Math.random() * fallbacks.length)];
     }
 
     setupFormValidation() {

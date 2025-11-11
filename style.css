@@ -638,6 +638,16 @@ section {
     object-fit: cover;
 }
 
+/* Make selected company logos black in light (day) theme */
+[data-theme="light"] .company-logo.kyxel,
+[data-theme="light"] .company-logo.melilla {
+    /* Force black fill regardless of original colors */
+    filter: grayscale(1) brightness(0) saturate(100%);
+    /* Preserve aspect and rendering */
+    object-fit: contain;
+    background-color: transparent;
+}
+
 .timeline-info h3 {
     font-size: 1.3rem;
     font-weight: 600;
