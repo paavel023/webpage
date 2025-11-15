@@ -1,7 +1,8 @@
 // Enhanced Portfolio Script with Advanced Features
 class PortfolioApp {
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'light';
+        // Default to dark theme unless user explicitly set a preference
+        this.currentTheme = localStorage.getItem('theme') || 'dark';
         this.notifications = [];
         this.chatMessages = [];
         this.isTyping = false;
@@ -12,6 +13,7 @@ class PortfolioApp {
 
                         init() {
         console.log('Initializing PortfolioApp');
+                            this.setupDisablePinchZoom();
         this.setupTheme();
         this.setupNavigation();
         this.setupAnimations();
@@ -31,12 +33,48 @@ class PortfolioApp {
         console.log('PortfolioApp initialized');
     }
 
+    setupDisablePinchZoom() {
+        // Intentionally block multi-touch gestures (pinch-zoom) on mobile.
+        // Uses non-passive listeners so preventDefault() takes effect.
+        try {
+            const preventPinch = function(e) {
+                if (e.touches && e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            };
+
+            const preventGesture = function(e) {
+                e.preventDefault();
+            };
+
+            document.addEventListener('touchstart', preventPinch, { passive: false });
+            document.addEventListener('touchmove', preventPinch, { passive: false });
+            // iOS Safari gesture events
+            document.addEventListener('gesturestart', preventGesture, { passive: false });
+
+            // Prevent pinch-zoom via ctrl+wheel (desktop pinch/zoom shortcuts)
+            document.addEventListener('wheel', function(e) {
+                if (e.ctrlKey) e.preventDefault();
+            }, { passive: false });
+        } catch (err) {
+            // If the environment doesn't support options or throws, fail silently.
+            console.warn('Pinch-zoom disable not fully supported in this browser.', err);
+        }
+    }
+
     setupTheme() {
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
             themeToggle.addEventListener('click', () => this.toggleTheme());
+            // Ensure the toggle icon reflects the current theme on load
+            const themeIcon = themeToggle.querySelector('i');
+            if (themeIcon) {
+                themeIcon.className = this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
         }
+        // Update any themed logos to match the current theme on load
+        this.updateThemeLogos();
     }
 
 
@@ -50,6 +88,24 @@ class PortfolioApp {
         const themeIcon = document.querySelector('#theme-toggle i');
         if (themeIcon) {
             themeIcon.className = this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+        // Update themed logos when the theme changes
+        this.updateThemeLogos();
+    }
+
+    updateThemeLogos() {
+        try {
+            const imgs = document.querySelectorAll('img.themed-logo[data-src-dark][data-src-light]');
+            imgs.forEach(img => {
+                const darkSrc = img.getAttribute('data-src-dark');
+                const lightSrc = img.getAttribute('data-src-light');
+                if (!darkSrc || !lightSrc) return;
+                const newSrc = this.currentTheme === 'light' ? lightSrc : darkSrc;
+                if (img.src && img.src.endsWith(newSrc)) return; // already set (best-effort)
+                img.setAttribute('src', newSrc);
+            });
+        } catch (err) {
+            console.warn('Failed to update themed logos', err);
         }
     }
 
@@ -331,10 +387,9 @@ class PortfolioApp {
             });
         };
 
-        // Request notification permission
-        if ('Notification' in window) {
-            Notification.requestPermission();
-        }
+        // Note: automatic browser notification permission prompt disabled by request.
+        // If you want to enable prompting later, set a flag like `window.ENABLE_NOTIFICATION_PROMPT = true`
+        // and call Notification.requestPermission() from a user gesture (button click) to avoid unexpected prompts.
     }
 
     getNotificationIcon(type) {

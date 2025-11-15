@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <title>Pavel Todica | Developer & CEO | FiveM & Web Development Expert</title>
   <meta name="description" content="Professional portfolio of Pavel Todica (paaveldev) - Developer and CEO with extensive experience in FiveM roleplay communities, game development, and security solutions." />
@@ -46,39 +46,40 @@
     "image": "https://paveltodica.dev/img/4.jpg"
   }
   </script>
+  
+    <!-- Branding / PWA (optional) -->
+    <meta name="theme-color" content="#0f172a" />
+    <!-- <link rel="manifest" href="/site.webmanifest" /> -->
 
-  <!-- Branding / PWA (optional) -->
-  <meta name="theme-color" content="#0f172a" />
-  <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/logo.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="img/logo.png" />
+    <!-- Performance: preconnect + preload + single import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Performance: preconnect + preload + single import -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 
-  <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="/style.css" />
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="/style.css" />
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="dns-prefetch" href="//cdn.discordapp.com" />
 
-  <!-- DNS Prefetch -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
-  <link rel="dns-prefetch" href="//unpkg.com" />
-  <link rel="dns-prefetch" href="//cdn.discordapp.com" />
-
-  <!-- NOTE: Security headers (CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy, X-Content-Type-Options) must be set as HTTP response headers on the host, not via <meta>. -->
+    <!-- entry splash removed -->
 </head>
 <body>
+        <!-- entry splash removed -->
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -311,12 +312,12 @@
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <div class="timeline-logo">
-                                <img src="img/logo.png" alt="Spain Roleplay Logo">
+                            <div class="timeline-logo srp-logo">
+                                <img src="img/companies/srp_white.png" alt="Spain Roleplay Logo" class="company-logo srp themed-logo" data-src-dark="img/companies/srp_white.png" data-src-light="img/companies/srp_black.png">
                             </div>
                             <div class="timeline-info">
                                 <h3>FiveM Developer</h3>
-                                <span class="company">Syndicate</span>
+                                <span class="company">SpainRP</span>
                                 <span class="period">2022-2023</span>
                             </div>
                         </div>
@@ -660,5 +661,6 @@
     <script src="analytics.js"></script>
     <script src="security-config.js"></script>
     <script src="performance.js"></script>
+    <!-- entry splash scripts removed -->
 </body>
 </html> 

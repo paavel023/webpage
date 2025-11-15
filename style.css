@@ -58,6 +58,35 @@ body {
     overflow-x: hidden;
 }
 
+/* Prevent horizontal overflow on small devices while preserving pinch-zoom */
+html, body {
+    max-width: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Make images and iframes responsive to avoid overflow */
+img, picture, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Hide native scrollbars visually but allow scrolling (mobile/desktop) */
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+/* Prevent horizontal overscroll bounce on supporting browsers */
+body {
+    overscroll-behavior-x: none;
+}
+
 /* Container */
 .container {
     max-width: 1200px;
@@ -636,6 +665,18 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Slightly larger styling for SpainRP logo to match other prominent logos */
+.timeline-logo.srp-logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 12px;
+}
+
+.timeline-logo.srp-logo img.company-logo.srp {
+    object-fit: contain;
+    padding: 6px; /* add a bit of inner spacing so logo sits nicely */
 }
 
 /* Make selected company logos black in light (day) theme */
@@ -2501,7 +2542,7 @@ section {
 /* Enhanced Mobile Responsiveness */
 @media (max-width: 768px) {
     .chat-container {
-        width: calc(100vw - 40px);
+        width: calc(100% - 40px);
         height: 400px;
         bottom: 80px;
         right: 20px;
@@ -2519,8 +2560,10 @@ section {
     }
     
     .search-container {
-        width: calc(100vw - 40px);
+        width: calc(100% - 40px);
         margin: 0 20px;
+        box-sizing: border-box;
+        max-width: calc(100% - 40px);
     }
 }
 
