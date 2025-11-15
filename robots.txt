@@ -1,3 +1,5 @@
+User-agent: HTTrack
+Disallow: /
+
 User-agent: *
-Allow: /
-Sitemap: https://paveltodica.dev/sitemap.xml
+Disallow:
