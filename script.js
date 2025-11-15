@@ -6,6 +6,18 @@ class PortfolioApp {
         this.notifications = [];
         this.chatMessages = [];
         this.isTyping = false;
+        // Default local chat responses kept as data only (live chat UI removed)
+        this.chatResponses = {
+            'hello': 'Hi! How can I help you today?',
+            'help': 'I can help you with project inquiries, collaboration opportunities, or technical questions.',
+            'contact': 'You can reach me at contact@kachitodev.com or through the contact form.',
+            'project': 'I have experience in FiveM development, game development, and security solutions. What specific area interests you?',
+            'hola': '¡Hola! ¿En qué puedo ayudarte?',
+            'buenas': '¡Hola! ¿Cómo puedo ayudarte hoy?',
+            'ayuda': 'Puedo ayudarte con consultas sobre proyectos, colaboraciones o preguntas técnicas.',
+            'contacto': 'Puedes contactarme en contact@kachitodev.com o mediante el formulario de contacto.',
+            'proyecto': 'Tengo experiencia en FiveM, desarrollo de juegos y soluciones de seguridad. ¿Qué área te interesa?'
+        };
         this.init();
         // Expose instance for debugging in devtools: window.portfolioApp
         try { window.portfolioApp = this; } catch (e) { /* ignore */ }
@@ -20,7 +32,6 @@ class PortfolioApp {
         this.setupTypingEffect();
         this.setupParticles();
         this.setupNotifications();
-        this.setupLiveChat();
         this.setupFormValidation();
         this.setupLazyLoading();
         this.setupKeyboardNavigation();
@@ -402,216 +413,7 @@ class PortfolioApp {
         return icons[type] || 'info-circle';
     }
 
-    setupLiveChat() {
-        // Create live chat widget
-        const chatWidget = document.createElement('div');
-        chatWidget.className = 'chat-widget';
-        chatWidget.innerHTML = `
-            <div class="chat-toggle">
-                <i class="fas fa-comments"></i>
-                <span class="chat-badge">1</span>
-            </div>
-            <div class="chat-container">
-                <div class="chat-header">
-                    <h3>Live Chat</h3>
-                    <button class="chat-close">&times;</button>
-                </div>
-                <div class="chat-messages"></div>
-                <div class="chat-input">
-                    <input type="text" placeholder="Type your message..." />
-                    <button class="chat-send">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(chatWidget);
-
-        // Chat functionality
-        const chatToggle = chatWidget.querySelector('.chat-toggle');
-        const chatContainer = chatWidget.querySelector('.chat-container');
-        const chatInput = chatWidget.querySelector('.chat-input input');
-        const chatSend = chatWidget.querySelector('.chat-send');
-        const chatMessages = chatWidget.querySelector('.chat-messages');
-
-        chatToggle.addEventListener('click', () => {
-            chatContainer.classList.toggle('active');
-        });
-
-        // Add event listener for chat close button
-        const chatClose = chatWidget.querySelector('.chat-close');
-        chatClose.addEventListener('click', () => {
-            chatContainer.classList.remove('active');
-        });
-
-        chatSend.addEventListener('click', () => this.sendChatMessage(chatInput.value));
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.sendChatMessage(chatInput.value);
-            }
-        });
-
-        // Auto responses
-        this.chatResponses = {
-            // English
-            'hello': 'Hi! How can I help you today?',
-            'help': 'I can help you with project inquiries, collaboration opportunities, or technical questions.',
-            'contact': 'You can reach me at contact@kachitodev.com or through the contact form.',
-            'project': 'I have experience in FiveM development, game development, and security solutions. What specific area interests you?',
-            // Spanish variants
-            'hola': '¡Hola! ¿En qué puedo ayudarte?',
-            'buenas': '¡Hola! ¿Cómo puedo ayudarte hoy?',
-            'ayuda': 'Puedo ayudarte con consultas sobre proyectos, colaboraciones o preguntas técnicas.',
-            'contacto': 'Puedes contactarme en contact@kachitodev.com o mediante el formulario de contacto.',
-            'proyecto': 'Tengo experiencia en FiveM, desarrollo de juegos y soluciones de seguridad. ¿Qué área te interesa?'
-        };
-    }
-
-    sendChatMessage(message) {
-        // Make this async-friendly so we can call remote AI backends if configured
-        (async () => {
-            if (!message || !message.trim()) return;
-
-            const input = document.querySelector('.chat-input input');
-
-            // Add user message
-            this.addChatMessage(message, 'user');
-            if (input) input.value = '';
-
-            // Show typing indicator while generating
-            this.showTypingIndicator();
-
-            try {
-                const response = await this.getAutoResponse(message);
-                // small randomized delay to emulate natural typing
-                await new Promise(r => setTimeout(r, 400 + Math.random() * 1200));
-                this.hideTypingIndicator();
-                this.addChatMessage(response, 'bot');
-            } catch (err) {
-                this.hideTypingIndicator();
-                console.error('AI response error:', err);
-                this.addChatMessage("Lo siento, no puedo generar una respuesta ahora mismo.", 'bot');
-            }
-        })();
-    }
-
-    addChatMessage(message, sender) {
-        const chatMessages = document.querySelector('.chat-messages');
-        const messageEl = document.createElement('div');
-        messageEl.className = `chat-message chat-message-${sender}`;
-        messageEl.textContent = message;
-        chatMessages.appendChild(messageEl);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        // Persist in-memory chat history for context (limit size)
-        try {
-            if (!this.chatMessages) this.chatMessages = [];
-            this.chatMessages.push({ sender, message, timestamp: Date.now() });
-            if (this.chatMessages.length > 200) this.chatMessages.splice(0, this.chatMessages.length - 200);
-        } catch (e) {
-            console.warn('Failed to push chat message to history', e);
-        }
-    }
-
-    showTypingIndicator() {
-        const chatMessages = document.querySelector('.chat-messages');
-        const typingEl = document.createElement('div');
-        typingEl.className = 'chat-message chat-message-bot typing-indicator';
-        typingEl.innerHTML = '<span></span><span></span><span></span>';
-        chatMessages.appendChild(typingEl);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    hideTypingIndicator() {
-        const typingIndicator = document.querySelector('.typing-indicator');
-        if (typingIndicator) {
-            typingIndicator.remove();
-        }
-    }
-
-    // Async auto-response generator. If window.AI_CONFIG.endpoint is set, it will try to POST to that
-    // endpoint with { message, history } and expect { reply } in JSON. Otherwise it falls back to
-    // a lightweight local natural-ish generator.
-    async getAutoResponse(message) {
-        const text = (message || '').toString();
-
-        // If a remote AI endpoint is configured, call it (user must provide a safe backend).
-        try {
-            const cfg = window.AI_CONFIG || JSON.parse(localStorage.getItem('AI_CONFIG') || 'null');
-            if (cfg && cfg.endpoint) {
-                const payload = {
-                    message: text,
-                    history: this.chatMessages.slice(-12) // send recent context
-                };
-
-                const headers = { 'Content-Type': 'application/json' };
-                if (cfg.key) headers['Authorization'] = `Bearer ${cfg.key}`;
-
-                const resp = await fetch(cfg.endpoint, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(payload)
-                });
-
-                if (resp.ok) {
-                    const data = await resp.json();
-                    if (data && data.reply) return data.reply;
-                } else {
-                    console.warn('AI endpoint returned', resp.status);
-                }
-            }
-        } catch (e) {
-            console.warn('Remote AI call failed, falling back to local generator', e);
-        }
-
-        // Local, template-based response generator for natural-feeling replies
-        return this.localGenerateResponse(text);
-    }
-
-    localGenerateResponse(message) {
-        const normalized = (message || '').toLowerCase();
-
-        // Try keyword-based quick matches first
-        for (const [key, response] of Object.entries(this.chatResponses)) {
-            if (normalized.includes(key)) {
-                // vary phrasing
-                const variants = [response, `Sure — ${response}`, `${response} 😊`];
-                return variants[Math.floor(Math.random() * variants.length)];
-            }
-        }
-
-        // If message is a question (contains '?'), answer courteously
-    const questionWords = ['how', 'what', 'why', 'when', 'where', 'can', 'do', 'does'];
-    const questionWordsEs = ['cómo', 'como', 'qué', 'que', 'por qué', 'por que', 'cuando', 'dónde', 'donde', 'puedes', 'puedo', 'cómo estás', 'cómo estas'];
-    const startsWithQuestion = questionWords.some(w => normalized.startsWith(w + ' ')) || questionWordsEs.some(w => normalized.startsWith(w + ' '));
-    const isQuestion = message.trim().endsWith('?') || startsWithQuestion || questionWordsEs.some(w => normalized.includes(w));
-        if (isQuestion) {
-            const qResponses = [
-                "Buena pregunta — puedo investigar eso y volver con una respuesta más precisa.",
-                "Interesante — ¿puedes darme un poco más de contexto?",
-                "Puedo ayudar con eso. ¿Quieres que te explique en detalle o con un resumen?"
-            ];
-            return qResponses[Math.floor(Math.random() * qResponses.length)];
-        }
-
-        // For short messages, be concise
-        if (message.trim().length < 20) {
-            const shortReplies = [
-                "¡Perfecto! Cuéntame más.",
-                "Entendido.",
-                "Genial — ¿qué necesitas exactamente?"
-            ];
-            return shortReplies[Math.floor(Math.random() * shortReplies.length)];
-        }
-
-        // Default friendly fallback
-        const fallbacks = [
-            "Gracias por el mensaje — lo revisaré y te respondo pronto.",
-            "¡Gracias! Si quieres, dame más detalles para poder ayudar mejor.",
-            "Interesante. Puedo ayudar con eso: ¿te gustaría una guía paso a paso o un resumen rápido?"
-        ];
-        return fallbacks[Math.floor(Math.random() * fallbacks.length)];
-    }
+    // Live chat removed: setupLiveChat and related helper functions have been deleted per request.
 
     setupFormValidation() {
         const contactForm = document.querySelector('.contact-form');
@@ -739,10 +541,9 @@ class PortfolioApp {
         document.addEventListener('keydown', (e) => {
             // Escape key closes modals/chat
             if (e.key === 'Escape') {
-                const chatContainer = document.querySelector('.chat-container');
-                if (chatContainer && chatContainer.classList.contains('active')) {
-                    chatContainer.classList.remove('active');
-                }
+                // Close other modals if present (search modal handled elsewhere)
+                const modal = document.querySelector('.search-modal');
+                if (modal) modal.remove();
             }
 
             // Ctrl/Cmd + K for search
